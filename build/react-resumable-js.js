@@ -139,7 +139,7 @@ var ReactResumableJs = function (_React$Component) {
                 // May wish to keep uploaded state if workflow allows multiple upload.
                 // Maybe wish to remove uploaded state if each upload is it's own transaction.
                 this.complete();
-            });
+            }.bind(_this));
 
             _this.resumable = ResumableField;
         };

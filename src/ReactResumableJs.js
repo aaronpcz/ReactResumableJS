@@ -128,7 +128,7 @@ export default class ReactResumableJs extends React.Component {
             // May wish to keep uploaded state if workflow allows multiple upload.
             // Maybe wish to remove uploaded state if each upload is it's own transaction.
             this.complete();
-        });
+        }.bind(this));
 
         this.resumable = ResumableField;
     };
