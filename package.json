@@ -1,6 +1,6 @@
 {
   "name": "react-resumable-js",
-  "version": "1.1.24",
+  "version": "1.1.25",
   "description": "Upload component in React for using with Resumable JS",
   "main": "./build/react-resumable-js",
   "directories": {
@@ -33,6 +33,10 @@
     {
       "name": "Alejo Daraio",
       "url": "https://github.com/alejodaraio"
+    },
+    {
+      "name": "Aaron Phillips",
+      "url": "https://github.com/Artear/ReactResumableJS"
     }
   ],
   "license": "MIT",

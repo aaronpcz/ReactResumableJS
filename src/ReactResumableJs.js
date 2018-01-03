@@ -123,7 +123,33 @@ export default class ReactResumableJs extends React.Component {
             this.props.onUploadErrorCallback(file, errorCount);
         });
 
+        ResumableField.on('complete', function() {
+            // TODO review if this should be an optional feature
+            // May wish to keep uploaded state if workflow allows multiple upload.
+            // Maybe wish to remove uploaded state if each upload is it's own transaction.
+            this.complete();
+        });
+
         this.resumable = ResumableField;
+    };
+
+    complete = () => {
+        var currentFileList = this.state.fileList.files;
+
+        // remove all the files from the underlying global resumable library vars
+        for (var i = 0; i < this.state.fileList.files.length; i++) {
+            this.resumable.removeFile(currentFileList[i]);
+        }
+
+        // remove local state
+        this.setState({
+            fileList: { files: [] }
+        });
+
+        // call the prop handler for the complete event
+        if (typeof this.props.onCompleteUpload === "function") {
+            this.props.onCompleteUpload();
+        }
     };
 
     removeFile = (event, file, index) => {
@@ -321,6 +347,9 @@ ReactResumableJs.defaultProps = {
     },
     onStartUpload: function () {
         return true;
+    },
+    onCompleteUpload: function () {
+        console.log('onCompleteUpload');
     },
     disableDragAndDrop: false,
     fileNameServer: "",
